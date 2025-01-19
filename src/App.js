@@ -12,6 +12,9 @@ import { CouponEventCreate } from './components/coupons/CouponEventCreate';
 import { CouponTemplateList } from './components/coupons/CouponTemplateList';
 import { CouponTemplateCreate } from './components/coupons/CouponTemplateCreate';
 import { UserCouponList } from './components/coupons/UserCouponList';
+import KakaoMap from './components/store/KakaoMap';
+import StoreDetail from './components/store/StoreDetail';
+
 
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import './App.css';
@@ -63,6 +66,11 @@ const App = () => {
                   회원가입
                 </Link>
               </li>
+              <li>
+                <Link to="/map" style={{ color: 'white', textDecoration: 'none' }}>
+                  지도 검색
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -93,6 +101,11 @@ const App = () => {
 
               {/* 사용자 쿠폰 관련 라우트 */}
               <Route path="/my-coupons" element={<UserCouponList />} />
+
+              {/* 카카오맵 라우트 */}
+              <Route path="/map/*" element={<KakaoMap />} />
+
+              <Route path="/store/:storeId" element={<StoreDetail />} />
 
               {/* 홈 페이지와 404 페이지 */}
               <Route path="/" element={<EventList />} />
