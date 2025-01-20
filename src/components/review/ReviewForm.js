@@ -6,19 +6,34 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
     const [formData, setFormData] = useState({
         content: '',
         rating: 5,
-        visitDateTime: '',
+        visitDate: '',
+        visitTime: '12:00',
         crowdedness: 'NORMAL'
     });
+    
+    // 기존 state들은 유지
     const [images, setImages] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const generateTimeOptions = () => {
+        const options = [];
+        for(let hour = 0; hour < 24; hour++) {
+            for(let minute = 0; minute < 60; minute += 10) {
+                const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                options.push(timeString);
+            }
+        }
+        return options;
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: name === 'rating' ? Number(value) : value
-        }));
+        if (name === 'rating') {
+            setFormData(prev => ({ ...prev, [name]: Number(value) }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
     const validateForm = () => {
@@ -28,7 +43,7 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
         if (formData.rating < 1 || formData.rating > 5) {
             throw new Error('평점은 1-5 사이여야 합니다.');
         }
-        if (!formData.visitDateTime) {
+        if (!formData.visitDate || !formData.visitTime) {
             throw new Error('방문 일시를 선택해주세요.');
         }
     };
@@ -41,16 +56,15 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
         try {
             validateForm();
     
-            // ReviewRequest 객체를 직접 생성
+            const visitDateTime = `${formData.visitDate}T${formData.visitTime}`;
             const reviewRequest = {
                 content: formData.content,
                 rating: formData.rating,
-                visitDateTime: formData.visitDateTime,
+                visitDateTime: visitDateTime,
                 crowdedness: formData.crowdedness
             };
     
             const formDataToSend = new FormData();
-            // JSON 문자열이 아닌 일반 문자열로 각 필드를 추가
             Object.entries(reviewRequest).forEach(([key, value]) => {
                 formDataToSend.append(key, value);
             });
@@ -68,7 +82,8 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
             setFormData({
                 content: '',
                 rating: 5,
-                visitDateTime: '',
+                visitDate: '',
+                visitTime: '12:00',
                 crowdedness: 'NORMAL'
             });
             setImages([]);
@@ -163,14 +178,28 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label className="form-label">방문 일시</label>
+                        <label className="form-label">방문 일자</label>
                         <input 
-                            type="datetime-local" 
-                            name="visitDateTime"
-                            value={formData.visitDateTime} 
+                            type="date" 
+                            name="visitDate"
+                            value={formData.visitDate} 
                             onChange={handleInputChange} 
                             className="form-input"
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">방문 시간</label>
+                        <select 
+                            name="visitTime"
+                            value={formData.visitTime} 
+                            onChange={handleInputChange}
+                            className="form-select"
+                        >
+                            {generateTimeOptions().map(time => (
+                                <option key={time} value={time}>{time}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="form-group">
