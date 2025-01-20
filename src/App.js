@@ -14,6 +14,7 @@ import { CouponTemplateCreate } from './components/coupons/CouponTemplateCreate'
 import { UserCouponList } from './components/coupons/UserCouponList';
 import KakaoMap from './components/store/KakaoMap';
 import StoreDetail from './components/store/StoreDetail';
+import UserActivity from './components/user/UserActivity';
 
 
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -54,6 +55,11 @@ const App = () => {
               <li>
                 <Link to="/my-coupons" style={{ color: 'white', textDecoration: 'none' }}>
                   내 쿠폰
+                </Link>
+              </li>
+              <li>
+                <Link to="/my-activity" style={{ color: 'white', textDecoration: 'none' }}>
+                  내 활동
                 </Link>
               </li>
               <li>
@@ -101,11 +107,13 @@ const App = () => {
 
               {/* 사용자 쿠폰 관련 라우트 */}
               <Route path="/my-coupons" element={<UserCouponList />} />
+              <Route path="/my-activity" element={<UserActivity />} />
 
               {/* 카카오맵 라우트 */}
               <Route path="/map/*" element={<KakaoMap />} />
-
               <Route path="/store/:storeId" element={<StoreDetail />} />
+
+
 
               {/* 홈 페이지와 404 페이지 */}
               <Route path="/" element={<EventList />} />
