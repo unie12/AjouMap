@@ -1,0 +1,116 @@
+/* ReviewItem.css */
+.review-item {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.review-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rating {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.author {
+    font-weight: 600;
+    color: #333;
+}
+
+.date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.crowdedness {
+    background: #f0f0f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.review-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.heart-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.heart-button.liked {
+    color: #ff4b4b;
+}
+
+.heart-button:hover {
+    transform: scale(1.1);
+}
+
+.heart-count {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.owner-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.owner-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.owner-actions button:first-child {
+    background: #e0e0e0;
+}
+
+.owner-actions button:last-child {
+    background: #ff4b4b;
+    color: white;
+}
+
+.review-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.review-images img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.review-images img:hover {
+    transform: scale(1.05);
+}
