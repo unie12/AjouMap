@@ -15,6 +15,7 @@ import { UserCouponList } from './components/coupons/UserCouponList';
 import KakaoMap from './components/store/KakaoMap';
 import StoreDetail from './components/store/StoreDetail';
 import UserActivity from './components/user/UserActivity';
+import Analytics from './components/analytics/Analytics';
 
 
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -77,6 +78,12 @@ const App = () => {
                   지도 검색
                 </Link>
               </li>
+
+              <li>
+                <Link to="/analytics" style={{ color: 'white', textDecoration: 'none' }}>
+                    실시간 인기
+                </Link>
+            </li>
             </ul>
           </nav>
 
@@ -113,6 +120,7 @@ const App = () => {
               <Route path="/map/*" element={<KakaoMap />} />
               <Route path="/store/:storeId" element={<StoreDetail />} />
 
+              <Route path="/analytics" element={<Analytics />} />
 
 
               {/* 홈 페이지와 404 페이지 */}
