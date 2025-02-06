@@ -16,6 +16,8 @@ import KakaoMap from './components/store/KakaoMap';
 import StoreDetail from './components/store/StoreDetail';
 import UserActivity from './components/user/UserActivity';
 import Analytics from './components/analytics/Analytics';
+import RecruitmentList from './components/recruitment/RecruitmentList';
+import RecruitmentDetail from './components/recruitment/RecruitmentDetail';
 
 
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -121,6 +123,10 @@ const App = () => {
               <Route path="/store/:storeId" element={<StoreDetail />} />
 
               <Route path="/analytics" element={<Analytics />} />
+
+               {/* 밥친구 구인 관련 라우트 */}
+              <Route path="/store/:storeId/recruitments" element={<RecruitmentList />} />
+              <Route path="/store/:storeId/recruitments/:recruitmentId" element={<RecruitmentDetail />} />
 
 
               {/* 홈 페이지와 404 페이지 */}

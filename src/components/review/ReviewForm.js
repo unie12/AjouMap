@@ -73,7 +73,7 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
                 formDataToSend.append('images', image);
             });
     
-            await api.post(`/review/store/${storeId}`, formDataToSend, {
+            const response = await api.post(`/review/store/${storeId}`, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -87,7 +87,7 @@ const ReviewForm = ({ storeId, onReviewSubmitted }) => {
                 crowdedness: 'NORMAL'
             });
             setImages([]);
-            onReviewSubmitted?.();
+            onReviewSubmitted(response.data);
 
         } catch (error) {
             setError(error.message || '리뷰 작성에 실패했습니다.');
