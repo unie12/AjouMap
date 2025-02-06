@@ -1,4 +1,4 @@
-/* src/components/analytics/Analytics.css */
+/* src/styles/Analytics.css */
 .analytics-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -34,8 +34,38 @@
     align-items: center;
     justify-content: center;
     margin-right: 15px;
+    flex-shrink: 0;
 }
 
 .name {
     flex: 1;
+    font-weight: 500;
+}
+
+.store-info, .review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 10px;
+}
+
+.category {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.view-count, .review-count {
+    font-size: 0.9em;
+    color: #007bff;
+}
+
+.rating {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.count {
+    margin-left: auto;
+    color: #666;
+    font-size: 0.9em;
 }
