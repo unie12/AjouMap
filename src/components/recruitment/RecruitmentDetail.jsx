@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
 import { formatDate } from '../../utils/dateUtils';
-// import '../../styles/RecruitmentDetail.css';
+import ChatRoom from '../chat/ChatRoom';
 
 const RecruitmentDetail = () => {
     const { storeId, recruitmentId } = useParams();
@@ -110,6 +110,13 @@ const RecruitmentDetail = () => {
                     </button>
                 </div>
             </div>
+            {/* 채팅방 컴포넌트 추가 */}
+            {recruitment.chatRoomId && (
+                <div className="chat-section">
+                    <h3>채팅방</h3>
+                    <ChatRoom roomId={recruitment.chatRoomId} />
+                </div>
+            )}
         </div>
     );
 };
